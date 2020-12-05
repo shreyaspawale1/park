@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all attractions
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new attraction
+    </h2>
+
+    <form action="/insert_attraction" method="post">
+      <div>
+        <label for="park_id_box">
+          Park
+        </label>
+
+        <input type="text" id="park_id_box" name="query_park_id">
+      </div>
+
+      <div>
+        <label for="activity_id_box">
+          Activity
+        </label>
+
+        <input type="text" id="activity_id_box" name="query_activity_id">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <button>
+        Create attraction
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Park
+        </th>
+
+        <th>
+          Activity
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_attractions.each do |an_attraction| %>
+      <tr>
+        <td>
+          <%= an_attraction.id %>
+        </td>
+
+        <td>
+          <%= an_attraction.park_id %>
+        </td>
+
+        <td>
+          <%= an_attraction.activity_id %>
+        </td>
+
+        <td>
+          <%= an_attraction.name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_attraction.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_attraction.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/attractions/<%= an_attraction.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

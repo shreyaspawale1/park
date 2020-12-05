@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all activities
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new activity
+    </h2>
+
+    <form action="/insert_activity" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="duration_box">
+          Duration
+        </label>
+
+        <input type="text" id="duration_box" name="query_duration">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description" rows="3"></textarea>
+      </div>
+
+      <button>
+        Create activity
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Duration
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_activities.each do |an_activity| %>
+      <tr>
+        <td>
+          <%= an_activity.id %>
+        </td>
+
+        <td>
+          <%= an_activity.name %>
+        </td>
+
+        <td>
+          <%= an_activity.duration %>
+        </td>
+
+        <td>
+          <%= an_activity.description %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_activity.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_activity.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/activities/<%= an_activity.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

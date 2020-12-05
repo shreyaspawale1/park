@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Attraction #<%= @the_attraction.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/attractions">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_attraction/<%= @the_attraction.id %>">
+          Delete attraction
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Park
+      </dt>
+      <dd>
+        <%= @the_attraction.park_id %>
+      </dd>
+
+      <dt>
+        Activity
+      </dt>
+      <dd>
+        <%= @the_attraction.activity_id %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_attraction.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_attraction.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_attraction.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit attraction
+    </h2>
+
+    <form action="/modify_attraction/<%= @the_attraction.id %>"  method="post" >
+      <div>
+        <label for="park_id_box">
+          Park
+        </label>
+
+        <input type="text" id="park_id_box" name="query_park_id" value="<%= @the_attraction.park_id %>">
+      </div>
+
+      <div>
+        <label for="activity_id_box">
+          Activity
+        </label>
+
+        <input type="text" id="activity_id_box" name="query_activity_id" value="<%= @the_attraction.activity_id %>">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_attraction.name %>">
+      </div>
+
+      <button>
+        Update attraction
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

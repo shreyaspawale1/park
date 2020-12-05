@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Trip #<%= @the_trip.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/trips">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_trip/<%= @the_trip.id %>">
+          Delete trip
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_trip.user_id %>
+      </dd>
+
+      <dt>
+        Park
+      </dt>
+      <dd>
+        <%= @the_trip.park_id %>
+      </dd>
+
+      <dt>
+        Departs at
+      </dt>
+      <dd>
+        <%= @the_trip.departs_at %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_trip.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_trip.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit trip
+    </h2>
+
+    <form action="/modify_trip/<%= @the_trip.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_trip.user_id %>">
+      </div>
+
+      <div>
+        <label for="park_id_box">
+          Park
+        </label>
+
+        <input type="text" id="park_id_box" name="query_park_id" value="<%= @the_trip.park_id %>">
+      </div>
+
+      <div>
+        <label for="departs_at_box">
+          Departs at
+        </label>
+
+        <input type="date" id="departs_at_box" name="query_departs_at" value="<%= @the_trip.departs_at %>">
+      </div>
+
+      <button>
+        Update trip
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
