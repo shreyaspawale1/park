@@ -1,8 +1,18 @@
 class TripsController < ApplicationController
-  def index
-    matching_trips = Trip.all
+  before_action(:must_be_signed_in)
 
-    @list_of_trips = matching_trips.order({ :created_at => :desc })
+  def must_be_signed_in
+    if @current_user == nil
+      redirect_to("/user_sign_in", {:alert => "Please sign in first."})
+    end
+  end
+
+  def index
+    matching_trips = @current_user.trips
+
+    @upcoming_trips = matching_trips.where("departs_at > ?", Time.now).order({ :created_at => :desc })
+
+    @past_trips = matching_trips.where("departs_at <= ?", Time.now).order({ :created_at => :desc })
 
     render({ :template => "trips/index.html.erb" })
   end
@@ -19,9 +29,9 @@ class TripsController < ApplicationController
 
   def create
     the_trip = Trip.new
-    the_trip.user_id = params.fetch("query_user_id")
-    the_trip.park_id = params.fetch("query_park_id")
+    the_trip.user_id = @current_user.id
     the_trip.departs_at = params.fetch("query_departs_at")
+    the_trip.park_id = params.fetch("query_park_id")
 
     if the_trip.valid?
       the_trip.save
@@ -37,7 +47,6 @@ class TripsController < ApplicationController
 
     the_trip.user_id = params.fetch("query_user_id")
     the_trip.park_id = params.fetch("query_park_id")
-    the_trip.departs_at = params.fetch("query_departs_at")
 
     if the_trip.valid?
       the_trip.save

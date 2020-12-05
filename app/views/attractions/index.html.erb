@@ -1,4 +1,4 @@
-<div>
+div>
   <div>
     <h1>
       List of all attractions
@@ -16,27 +16,39 @@
 
     <form action="/insert_attraction" method="post">
       <div>
-        <label for="park_id_box">
-          Park
-        </label>
-
-        <input type="text" id="park_id_box" name="query_park_id">
-      </div>
-
-      <div>
-        <label for="activity_id_box">
-          Activity
-        </label>
-
-        <input type="text" id="activity_id_box" name="query_activity_id">
-      </div>
-
-      <div>
         <label for="name_box">
           Name
         </label>
 
         <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div> 
+        <label for="park_id_box">
+          National Park
+        </label>
+
+        <select id="park_id_box" name="query_park_id">
+          <% Park.all.order({ :title => :asc }).each do |a_park| %>
+            <option value="<%= a_park.id %>">
+              <%= a_park.name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+
+      <div> 
+        <label for="activity_id_box">
+          Activity
+        </label>
+
+        <select id="activity_id_box" name="query_activity_id">
+          <% Activity.all.order({ :title => :asc }).each do |a_activity| %>
+            <option value="<%= a_activity.id %>">
+              <%= a_activity.name %>
+            </option>
+          <% end %>
+        </select>
       </div>
 
       <button>
@@ -51,10 +63,6 @@
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
-
         <th>
           Park
         </th>
@@ -82,15 +90,11 @@
       <% @list_of_attractions.each do |an_attraction| %>
       <tr>
         <td>
-          <%= an_attraction.id %>
+          <%= an_attraction.park.name %>
         </td>
 
         <td>
-          <%= an_attraction.park_id %>
-        </td>
-
-        <td>
-          <%= an_attraction.activity_id %>
+          <%= an_attraction.activity.name %>
         </td>
 
         <td>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get("/", { :controller => "parks", :action => "index" })
 
   # Routes for the Trip resource:
 

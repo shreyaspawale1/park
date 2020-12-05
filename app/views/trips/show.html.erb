@@ -34,13 +34,6 @@
       </dd>
 
       <dt>
-        Departs at
-      </dt>
-      <dd>
-        <%= @the_trip.departs_at %>
-      </dd>
-
-      <dt>
         Created at
       </dt>
       <dd>
@@ -81,14 +74,6 @@
         </label>
 
         <input type="text" id="park_id_box" name="query_park_id" value="<%= @the_trip.park_id %>">
-      </div>
-
-      <div>
-        <label for="departs_at_box">
-          Departs at
-        </label>
-
-        <input type="date" id="departs_at_box" name="query_departs_at" value="<%= @the_trip.departs_at %>">
       </div>
 
       <button>

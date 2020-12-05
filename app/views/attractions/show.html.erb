@@ -1,100 +1,121 @@
-<div>
+div>
   <div>
     <h1>
-      Attraction #<%= @the_attraction.id %> details
+      List of all attractions
     </h1>
-
-    <div>
-      <div>
-        <a href="/attractions">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_attraction/<%= @the_attraction.id %>">
-          Delete attraction
-        </a>
-      </div>
-    </div>
-
-    <dl>
-      <dt>
-        Park
-      </dt>
-      <dd>
-        <%= @the_attraction.park_id %>
-      </dd>
-
-      <dt>
-        Activity
-      </dt>
-      <dd>
-        <%= @the_attraction.activity_id %>
-      </dd>
-
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @the_attraction.name %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_attraction.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_attraction.updated_at) %> ago
-      </dd>
-    </dl>
   </div>
 </div>
 
 <hr>
 
-
 <div>
   <div>
     <h2>
-      Edit attraction
+      Add a new attraction
     </h2>
 
-    <form action="/modify_attraction/<%= @the_attraction.id %>"  method="post" >
-      <div>
-        <label for="park_id_box">
-          Park
-        </label>
-
-        <input type="text" id="park_id_box" name="query_park_id" value="<%= @the_attraction.park_id %>">
-      </div>
-
-      <div>
-        <label for="activity_id_box">
-          Activity
-        </label>
-
-        <input type="text" id="activity_id_box" name="query_activity_id" value="<%= @the_attraction.activity_id %>">
-      </div>
-
+    <form action="/insert_attraction" method="post">
       <div>
         <label for="name_box">
           Name
         </label>
 
-        <input type="text" id="name_box" name="query_name" value="<%= @the_attraction.name %>">
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div> 
+        <label for="park_id_box">
+          National Park
+        </label>
+
+        <select id="park_id_box" name="query_park_id">
+          <% Park.all.order({ :title => :asc }).each do |a_park| %>
+            <option value="<%= a_park.id %>">
+              <%= a_park.name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+
+      <div> 
+        <label for="activity_id_box">
+          Activity
+        </label>
+
+        <select id="activity_id_box" name="query_activity_id">
+          <% Activity.all.order({ :title => :asc }).each do |a_activity| %>
+            <option value="<%= a_activity.id %>">
+              <%= a_activity.name %>
+            </option>
+          <% end %>
+        </select>
       </div>
 
       <button>
-        Update attraction
+        Create attraction
       </button>
     </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          Park
+        </th>
+
+        <th>
+          Activity
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_attractions.each do |an_attraction| %>
+      <tr>
+        <td>
+          <%= an_attraction.park.name %>
+        </td>
+
+        <td>
+          <%= an_attraction.activity.name %>
+        </td>
+
+        <td>
+          <%= an_attraction.name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_attraction.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_attraction.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/attractions/<%= an_attraction.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
 

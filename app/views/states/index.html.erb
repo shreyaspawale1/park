@@ -1,8 +1,56 @@
 <div>
   <div>
-    <h1>
+    <h2>
       List of all states
-    </h1>
+    </h2>
+  </div>
+</div>
+
+<div>
+  <div>
+    <table>
+      <tr>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Capital
+        </th>
+
+        <th>
+          Website
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_states.each do |a_state| %>
+
+        <td>
+          <%= a_state.name %>
+        </td>
+
+        <td>
+          <%= a_state.capital %>
+        </td>
+
+        <td>
+          <a href="<%= a_state.website %>">
+            <%= a_state.website %>
+          </a>
+        </td>
+
+        <td>
+          <a href="/states/<%= a_state.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
 
@@ -14,7 +62,7 @@
       Add a new state
     </h2>
 
-    <form action="/insert_state" method="post">
+   <form action="/insert_state" method="post">
       <div>
         <label for="name_box">
           Name
@@ -36,82 +84,10 @@
           Website
         </label>
 
-        <textarea id="website_box" name="query_website" rows="3"></textarea>
+        <input type="text" id="website_box" name="query_website">
       </div>
 
-      <button>
-        Create state
-      </button>
     </form>
-  </div>
-</div>
-
-<hr>
-<div>
-  <div>
-    <table>
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Capital
-        </th>
-
-        <th>
-          Website
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_states.each do |a_state| %>
-      <tr>
-        <td>
-          <%= a_state.id %>
-        </td>
-
-        <td>
-          <%= a_state.name %>
-        </td>
-
-        <td>
-          <%= a_state.capital %>
-        </td>
-
-        <td>
-          <%= a_state.website %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_state.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_state.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/states/<%= a_state.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
   </div>
 </div>
 

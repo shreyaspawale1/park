@@ -4,6 +4,32 @@
       Park #<%= @the_park.id %> details
     </h1>
 
+    <% if @current_user == nil %>
+      <% the_trip = 2000000 %>
+    <% else %>
+      <% the_trip = @current_user.trips.where({ :park_id => @the_park.id}).at(0) %>
+    <% end %>
+
+    <% if the_trip == 2000000 %>
+      <form action="/insert_trip" method="post">
+        <input type="hidden" id="park_id_box" name="query_park_id" value="<%= @the_park.id %>">
+        
+      </form>
+    <% elsif the_trip == nil %>
+      <form action="/insert_trip" method="post">
+        <input type="hidden" id="park_id_box" name="query_park_id" value="<%= @the_park.id %>">
+
+        <button>
+          Add Park to Trips
+        </button>
+      </form>
+    <% else %>
+      <%# delete bookmark link %>
+      <a href="/delete_trip/<%= the_trip.id %>">
+        Remove Park from Trips
+      </a>
+    <% end %>
+
     <div>
       <div>
         <a href="/parks">
@@ -22,6 +48,7 @@
       <dt>
         Name
       </dt>
+
       <dd>
         <%= @the_park.name %>
       </dd>
@@ -30,7 +57,11 @@
         Open year round
       </dt>
       <dd>
-        <%= @the_park.open_year_round %>
+          <% if @the_park.open_year_round == true %>
+            Yes
+          <% else %>
+            No
+          <% end %>
       </dd>
 
       <dt>
@@ -44,7 +75,7 @@
         State
       </dt>
       <dd>
-        <%= @the_park.state_id %>
+        <%= @the_park.state.name %>
       </dd>
 
       <dt>
@@ -65,7 +96,62 @@
 </div>
 
 <hr>
+<table border="1">
+  <tr>
+    <th>
+      ID
+    </th>
 
+    <th>
+      Attraction
+    </th>
+
+    <th>
+      Activity
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @the_park.attractions.each do |a_attraction| %>
+  <tr>
+    <td>
+      <%= a_attraction.id %>
+    </td>
+
+    <td>
+      <%= a_attraction.name %>
+    </td>
+
+    <td>
+      <%= a_attraction.activity.name %>
+    </td>
+
+    <td>
+      <a href="/attractions/<%= a_attraction.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Activity
+    </th>
+
+    <th>
+    </th>
+  </tr>
 
 <div>
   <div>

@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      State #<%= @the_state.id %> details
+      <%= @the_state.name %>'s details
     </h1>
 
     <div>
@@ -11,11 +11,6 @@
         </a>
       </div>
 
-      <div>
-        <a href="/delete_state/<%= @the_state.id %>">
-          Delete state
-        </a>
-      </div>
     </div>
 
     <dl>
@@ -36,29 +31,60 @@
       <dt>
         Website
       </dt>
-      <dd>
-        <%= @the_state.website %>
-      </dd>
+      <td>
+          <a href="<%= @the_state.website %>">
+            <%= @the_state.website %>
+          </a>
+      </td>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_state.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_state.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
 
 <hr>
+<h2><%= @the_state.name %>'s National Parks</h2>
 
+<table border="1">
+  <tr>
+    <th>
+      Park
+    </th>
+
+    <th>
+      Open Year Round?
+    </th>
+
+    <th>
+      State
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @the_state.parks.each do |a_park| %>
+  <tr>
+    <td>
+      <%= a_park.name %>
+    </td>
+
+    <td>
+      <%= a_park.open_year_round %>
+    </td>
+
+    <td>
+      <%= @the_state.name %>
+    </td>
+
+    <td>
+      <a href="/parks/<%= a_park.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<hr>
 
 <div>
   <div>
