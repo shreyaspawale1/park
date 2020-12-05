@@ -10,6 +10,53 @@
 
 <div>
   <div>
+    <table>
+      <tr>
+        <th>
+          Park
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Activity
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_attractions.each do |an_attraction| %>
+      <tr>
+        <td>
+          <%= an_attraction.park.name %>
+        </td>
+
+        <td>
+          <%= an_attraction.name %>
+        </td>
+
+        <td>
+          <%= an_attraction.activity.name %>
+        </td>
+
+        <td>
+          <a href="/attractions/<%= an_attraction.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
     <h2>
       Add a new attraction
     </h2>
@@ -58,65 +105,3 @@
   </div>
 </div>
 
-<hr>
-<div>
-  <div>
-    <table>
-      <tr>
-        <th>
-          Park
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Activity
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_attractions.each do |an_attraction| %>
-      <tr>
-        <td>
-          <%= an_attraction.park.name %>
-        </td>
-
-        <td>
-          <%= an_attraction.name %>
-        </td>
-
-        <td>
-          <%= an_attraction.activity.name %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(an_attraction.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(an_attraction.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/attractions/<%= an_attraction.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

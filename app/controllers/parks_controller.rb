@@ -1,5 +1,5 @@
 class ParksController < ApplicationController
-    def index
+  def index
     matching_parks = Park.all
 
     @list_of_parks = matching_parks.order({ :name => :asc })

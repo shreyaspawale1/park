@@ -2,7 +2,7 @@ class AttractionsController < ApplicationController
   def index
     matching_attractions = Attraction.all
 
-    @list_of_attractions = matching_attractions.order({ :created_at => :desc })
+    @list_of_attractions = matching_attractions.order({ :park_id => :asc })
 
     render({ :template => "attractions/index.html.erb" })
   end
@@ -14,7 +14,7 @@ class AttractionsController < ApplicationController
 
     matching_attractions1 = Attraction.all
 
-    @list_of_attractions = matching_attractions1.order({ :created_at => :desc })
+    @list_of_attractions = matching_attractions1.order({ :park_id => :asc })
 
     @the_attraction = matching_attractions.at(0)
 
