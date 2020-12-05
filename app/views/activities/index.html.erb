@@ -63,13 +63,6 @@
           Description
         </th>
 
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
 
         <th>
         </th>
@@ -89,12 +82,6 @@
           <%= an_activity.description %>
         </td>
 
-        <td>
-          <%= time_ago_in_words(an_activity.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(an_activity.updated_at) %> ago
-        </td>
 
         <td>
           <a href="/activities/<%= an_activity.id %>">
