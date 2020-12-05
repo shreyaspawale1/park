@@ -37,7 +37,9 @@
         Website
       </dt>
       <dd>
-        <%= @the_park.website %>
+        <a href="<%= @the_park.website %>">
+          <%= @the_park.website %>
+        </a>
       </dd>
 
       <dt>
@@ -47,19 +49,6 @@
         <%= @the_park.state.name %>
       </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_park.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_park.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>

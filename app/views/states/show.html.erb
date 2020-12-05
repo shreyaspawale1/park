@@ -69,7 +69,11 @@
     </td>
 
     <td>
-      <%= a_park.open_year_round %>
+      <% if a_park.open_year_round == true %>
+        Yes
+      <% else %>
+        No
+      <% end %>
     </td>
 
     <td>
