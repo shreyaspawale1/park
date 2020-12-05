@@ -89,7 +89,7 @@ Rails.application.routes.draw do
   # Routes for the State resource:
 
   # CREATE
-  post("/insert_state", { :controller => "states", :action => "create" })
+  # post("/insert_state", { :controller => "states", :action => "create" })
           
   # READ
   get("/states", { :controller => "states", :action => "index" })
@@ -98,10 +98,10 @@ Rails.application.routes.draw do
   
   # UPDATE
   
-  post("/modify_state/:path_id", { :controller => "states", :action => "update" })
+  # post("/modify_state/:path_id", { :controller => "states", :action => "update" })
   
   # DELETE
-  get("/delete_state/:path_id", { :controller => "states", :action => "destroy" })
+  # get("/delete_state/:path_id", { :controller => "states", :action => "destroy" })
 
   #------------------------------
 
