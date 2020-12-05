@@ -1,0 +1,132 @@
+<div>
+  <div>
+    <h1>
+      List of all parks
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new park
+    </h2>
+
+    <form action="/insert_park" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <input type="checkbox" id="open_year_round_box" name="query_open_year_round" value="1">
+
+        <label for="open_year_round_box">Open year round</label>
+      </div>
+
+      <div>
+        <label for="website_box">
+          Website
+        </label>
+
+        <input type="text" id="website_box" name="query_website">
+      </div>
+
+      <div>
+        <label for="state_id_box">
+          State
+        </label>
+
+        <input type="text" id="state_id_box" name="query_state_id">
+      </div>
+
+      <button>
+        Create park
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Open year round
+        </th>
+
+        <th>
+          Website
+        </th>
+
+        <th>
+          State
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_parks.each do |a_park| %>
+      <tr>
+        <td>
+          <%= a_park.id %>
+        </td>
+
+        <td>
+          <%= a_park.name %>
+        </td>
+
+        <td>
+          <%= a_park.open_year_round %>
+        </td>
+
+        <td>
+          <%= a_park.website %>
+        </td>
+
+        <td>
+          <%= a_park.state_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_park.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_park.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/parks/<%= a_park.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
