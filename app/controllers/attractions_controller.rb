@@ -12,6 +12,10 @@ class AttractionsController < ApplicationController
 
     matching_attractions = Attraction.where({ :id => the_id })
 
+    matching_attractions1 = Attraction.all
+
+    @list_of_attractions = matching_attractions1.order({ :created_at => :desc })
+
     @the_attraction = matching_attractions.at(0)
 
     render({ :template => "attractions/show.html.erb" })

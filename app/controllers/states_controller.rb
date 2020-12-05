@@ -2,7 +2,7 @@ class StatesController < ApplicationController
   def index
     matching_states = State.all
 
-    @list_of_states = matching_states.order({ :created_at => :desc })
+    @list_of_states = matching_states.order({ :name => :asc })
 
     render({ :template => "states/index.html.erb" })
   end
